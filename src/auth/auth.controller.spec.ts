@@ -111,15 +111,9 @@ describe('AuthController', () => {
       const req = { user: { userId: 1 } };
       mockAuthService.changePassword.mockResolvedValue(mockUserResponseDto);
 
-      const result = await controller.changePassword(
-        req as any,
-        changePasswordDto,
-      );
+      const result = await controller.changePassword(req as any, changePasswordDto);
 
-      expect(authService.changePassword).toHaveBeenCalledWith(
-        1,
-        changePasswordDto,
-      );
+      expect(authService.changePassword).toHaveBeenCalledWith(1, changePasswordDto);
       expect(result).toEqual(mockUserResponseDto);
     });
   });
@@ -135,9 +129,7 @@ describe('AuthController', () => {
 
       const result = await controller.forgotPassword(forgotPasswordDto);
 
-      expect(authService.forgotPassword).toHaveBeenCalledWith(
-        forgotPasswordDto.email,
-      );
+      expect(authService.forgotPassword).toHaveBeenCalledWith(forgotPasswordDto.email);
       expect(result).toEqual(expectedResult);
     });
   });
@@ -154,10 +146,7 @@ describe('AuthController', () => {
 
       const result = await controller.resetPassword(resetPasswordDto);
 
-      expect(authService.resetPassword).toHaveBeenCalledWith(
-        resetPasswordDto.token,
-        resetPasswordDto.newPassword,
-      );
+      expect(authService.resetPassword).toHaveBeenCalledWith(resetPasswordDto.token, resetPasswordDto.newPassword);
       expect(result).toEqual(expectedResult);
     });
   });
